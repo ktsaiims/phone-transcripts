@@ -1,0 +1,387 @@
+[
+  {
+    "messages": [
+      {"role": "user", "text": "I was charged twice this month for my subscription."},
+      {"role": "agent", "text": "I can see the duplicate charge on your account. I'll issue a refund now."},
+      {"role": "user", "text": "Thank you, how long will that take?"},
+      {"role": "agent", "text": "3 to 5 business days to appear on your statement."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "My invoice shows the wrong amount."},
+      {"role": "agent", "text": "Can you share the invoice number?"},
+      {"role": "user", "text": "INV-1234"},
+      {"role": "agent", "text": "Found it — there was a proration error. I've corrected it."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "The app keeps crashing when I try to open it."},
+      {"role": "agent", "text": "What device and OS version are you using?"},
+      {"role": "user", "text": "iPhone 14, iOS 17."},
+      {"role": "agent", "text": "There's a known issue fixed in v2.3. Try reinstalling the app."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I can't log in, it says my account is locked."},
+      {"role": "agent", "text": "I've unlocked your account. Please reset your password before logging in."},
+      {"role": "user", "text": "Got it, thank you."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I want to cancel my subscription."},
+      {"role": "agent", "text": "Can I ask why you're cancelling?"},
+      {"role": "user", "text": "It's too expensive for me right now."},
+      {"role": "agent", "text": "Understood. I've cancelled your subscription effective end of billing cycle."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "How do I add team members to my account?"},
+      {"role": "agent", "text": "Go to Settings, then Team, and click Invite. Enter their email addresses there."},
+      {"role": "user", "text": "Perfect, found it thanks."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Does your product support single sign-on?"},
+      {"role": "agent", "text": "Yes, we support SAML 2.0 SSO on the Enterprise plan."},
+      {"role": "user", "text": "What about SCIM provisioning?"},
+      {"role": "agent", "text": "Also available on Enterprise."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I cancelled but still got charged this month."},
+      {"role": "agent", "text": "The cancellation came in after the billing date. I'll refund this charge for you."},
+      {"role": "user", "text": "Okay, thank you."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "too short"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I forgot my password and the reset email never arrived."},
+      {"role": "agent", "text": "Let me resend the reset email. Can you check your spam folder as well?"},
+      {"role": "user", "text": "Found it in spam, working now."},
+      {"role": "agent", "text": "Great! You may want to whitelist our domain to avoid that in future."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "The app is freezing on my Android phone whenever I open a report."},
+      {"role": "agent", "text": "Which Android version are you on?"},
+      {"role": "user", "text": "Android 14 on a Pixel 7."},
+      {"role": "agent", "text": "This is a known bug in v3.1. Please update to v3.2 from the Play Store and it should be resolved."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I'd like to upgrade from the Pro plan to Enterprise."},
+      {"role": "agent", "text": "Happy to help. Enterprise starts at $500/month. Would you like to talk to our sales team?"},
+      {"role": "user", "text": "Yes please, can you set that up?"},
+      {"role": "agent", "text": "I've sent a meeting invite from our sales team to your email."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I want to downgrade my plan to Basic."},
+      {"role": "agent", "text": "The downgrade will take effect at your next billing cycle. You'll lose access to advanced reporting. Shall I proceed?"},
+      {"role": "user", "text": "Yes, go ahead."},
+      {"role": "agent", "text": "Done. Your plan will switch to Basic on the 15th."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Can I export all my data? I need it for compliance."},
+      {"role": "agent", "text": "Yes. Go to Settings > Data > Export All. You'll get a CSV download link via email."},
+      {"role": "user", "text": "How long does it take to generate?"},
+      {"role": "agent", "text": "Usually under 10 minutes for most accounts."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Under GDPR I'm requesting deletion of all my personal data."},
+      {"role": "agent", "text": "Understood. I'll flag this as a formal GDPR erasure request. We'll process it within 30 days and confirm by email."},
+      {"role": "user", "text": "Thank you."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Does your platform integrate with Slack?"},
+      {"role": "agent", "text": "Yes, we have a native Slack integration. You can enable it under Settings > Integrations > Slack."},
+      {"role": "user", "text": "Can it post alerts to a specific channel?"},
+      {"role": "agent", "text": "Yes, you can choose any channel during setup and configure which alert types to send."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I need to update the billing address on my account."},
+      {"role": "agent", "text": "You can update it under Billing > Payment Details > Edit Address."},
+      {"role": "user", "text": "I don't see that option."},
+      {"role": "agent", "text": "You may need Admin rights. I can update it for you — what's the new address?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "My account got locked again after I just reset the password."},
+      {"role": "agent", "text": "It looks like there were multiple failed login attempts from an unfamiliar IP. I've unlocked it and flagged the activity."},
+      {"role": "user", "text": "Should I be worried?"},
+      {"role": "agent", "text": "I'd recommend enabling two-factor authentication under Security Settings as a precaution."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "How do I generate a new API key?"},
+      {"role": "agent", "text": "Go to Settings > API > Create New Key. Give it a name and select the required scopes."},
+      {"role": "user", "text": "Can I limit it to read-only access?"},
+      {"role": "agent", "text": "Yes, just select only the read scopes when creating the key."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "The dashboard is loading really slowly for me today."},
+      {"role": "agent", "text": "We had a brief infrastructure issue earlier this morning that's now resolved. Are you still seeing slowness?"},
+      {"role": "user", "text": "No, it seems fine now."},
+      {"role": "agent", "text": "Good to hear. We've posted an incident summary on our status page if you need it."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I was charged for a full month but I only signed up two weeks ago."},
+      {"role": "agent", "text": "You're right, you should have been prorated. I'll apply a credit for the unused days to your account."},
+      {"role": "user", "text": "Will it show up on my next invoice?"},
+      {"role": "agent", "text": "Yes, it will appear as a credit on your next billing statement."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I used a promo code but still got charged full price."},
+      {"role": "agent", "text": "Let me look into that. Can you share the promo code you used?"},
+      {"role": "user", "text": "SAVE20"},
+      {"role": "agent", "text": "The code was applied but only covers the first month. I can issue a partial refund for this billing period if that helps."},
+      {"role": "user", "text": "Yes please, that would be great."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "My payment failed and now my account is suspended."},
+      {"role": "agent", "text": "It looks like your card was declined. Do you have an updated card you'd like to use?"},
+      {"role": "user", "text": "Yes, let me give you the new card details."},
+      {"role": "agent", "text": "I've updated your payment method and restored your account access."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Can I get a receipt for my last payment?"},
+      {"role": "agent", "text": "Of course. I'll send a copy to the email address on your account right now."},
+      {"role": "user", "text": "Thanks."},
+      {"role": "agent", "text": "Done — you should receive it within a few minutes."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I see a price increase on my latest invoice but I was never notified."},
+      {"role": "agent", "text": "I'm sorry about that. A notice was sent 30 days ago but it may have gone to spam. I'll apply a one-time credit for the difference."},
+      {"role": "user", "text": "Okay, that's fair. Thank you."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I accidentally bought the wrong plan. Can I get a refund?"},
+      {"role": "agent", "text": "Of course. Which plan did you intend to purchase?"},
+      {"role": "user", "text": "I wanted Basic, not Pro."},
+      {"role": "agent", "text": "I've refunded the Pro charge and switched your account to the Basic plan."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "My authenticator app codes aren't working since I got a new phone."},
+      {"role": "agent", "text": "I can help you re-enroll two-factor authentication. First, I'll send a verification code to your email."},
+      {"role": "user", "text": "Got the code."},
+      {"role": "agent", "text": "Great. Now go to Security Settings and scan the new QR code with your authenticator app."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I see a login from Germany in my activity log but I'm in the US."},
+      {"role": "agent", "text": "That does look suspicious. I'll log out all active sessions and lock the account while you investigate."},
+      {"role": "user", "text": "Please do that."},
+      {"role": "agent", "text": "Done. I've flagged it for our security team. Reset your password before logging back in."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Our company changed email domains and now I can't log in."},
+      {"role": "agent", "text": "I can update your login email. What is your new company email address?"},
+      {"role": "user", "text": "It's jsmith@newdomain.com"},
+      {"role": "agent", "text": "Updated. You can now log in with your new email address."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "A team member left the company and I need to revoke their access."},
+      {"role": "agent", "text": "Go to Settings > Team and click Remove next to their name. That will revoke their access immediately."},
+      {"role": "user", "text": "Should I also rotate our API keys?"},
+      {"role": "agent", "text": "Yes, if they had access to API keys, I recommend rotating those under Settings > API."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "My CSV export keeps failing with a 500 error."},
+      {"role": "agent", "text": "Can you tell me the date range and filters you're using?"},
+      {"role": "user", "text": "Last 90 days, all users."},
+      {"role": "agent", "text": "This looks like a backend issue. I've filed a bug report and will email you when it's resolved. As a workaround, try exporting in 30-day chunks."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I'm not getting any email notifications anymore."},
+      {"role": "agent", "text": "Let me check your notification settings. It looks like your email alerts were toggled off — possibly after a recent settings update."},
+      {"role": "user", "text": "Can you turn them back on?"},
+      {"role": "agent", "text": "Done. You should start receiving email notifications again immediately."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "The charts on my dashboard are showing the wrong dates. Everything is off by a day."},
+      {"role": "agent", "text": "That's likely a timezone mismatch. What timezone are you in?"},
+      {"role": "user", "text": "UTC-5, Eastern."},
+      {"role": "agent", "text": "Set your account timezone to America/New_York under Profile Settings. That should fix the date offset."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I can't upload a file — it says the file is too large."},
+      {"role": "agent", "text": "The web uploader has a 10MB limit. How large is your file?"},
+      {"role": "user", "text": "It's about 80MB."},
+      {"role": "agent", "text": "For files over 10MB, you'll need to use our API upload endpoint. I can send you the documentation for that."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "The mobile app isn't showing the data I just updated on the website."},
+      {"role": "agent", "text": "This is usually a caching issue on the mobile app. Try pulling down to force a refresh."},
+      {"role": "user", "text": "That didn't work."},
+      {"role": "agent", "text": "In that case, log out of the app and back in — that clears the local cache and should sync everything."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Can I pause my subscription instead of cancelling?"},
+      {"role": "agent", "text": "Yes, you can pause for up to 3 months. Your data will be preserved and billing stops during the pause."},
+      {"role": "user", "text": "Great, please pause it for 2 months."},
+      {"role": "agent", "text": "Done. Your subscription is paused and will resume automatically in 2 months."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I want to switch from monthly to annual billing."},
+      {"role": "agent", "text": "Annual billing saves you 20% — you'd pay $960 instead of $1200 per year."},
+      {"role": "user", "text": "That sounds good, please switch me over."},
+      {"role": "agent", "text": "Switched. Your annual plan starts today and we've prorated the remaining monthly days."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "My free trial ended but I haven't had time to fully evaluate the product."},
+      {"role": "agent", "text": "I can extend your trial by 7 days at no charge. Would that work for you?"},
+      {"role": "user", "text": "That would be perfect, thank you."},
+      {"role": "agent", "text": "Done — your trial is now extended through next week."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "If I cancel, what happens to my data?"},
+      {"role": "agent", "text": "Your data is retained for 30 days after cancellation. You can export it any time during that window."},
+      {"role": "user", "text": "And after 30 days?"},
+      {"role": "agent", "text": "It is permanently deleted from our systems after the 30-day retention period."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "We need a data processing agreement for our enterprise contract."},
+      {"role": "agent", "text": "I'll send our standard DPA to the email on your account. Please review and sign it."},
+      {"role": "user", "text": "Can we add custom clauses?"},
+      {"role": "agent", "text": "Yes, custom DPA terms are available for Enterprise accounts. I'll loop in our legal team."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Where is our data physically stored? We need to confirm it's in the EU for GDPR."},
+      {"role": "agent", "text": "All data for EU customers is stored in our Frankfurt data center, which is GDPR-compliant."},
+      {"role": "user", "text": "Is there any data that goes outside the EU?"},
+      {"role": "agent", "text": "No, we keep all EU customer data within EU data centers. I can provide a written confirmation if needed."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I need an audit log of all user actions on our account for a compliance review."},
+      {"role": "agent", "text": "You can download the full audit log from Settings > Security > Audit Log. You can filter by date range and user."},
+      {"role": "user", "text": "How far back does it go?"},
+      {"role": "agent", "text": "The audit log retains 12 months of activity."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Is your platform SOC 2 certified?"},
+      {"role": "agent", "text": "Yes, we hold SOC 2 Type II certification. I can share the report under NDA if required."},
+      {"role": "user", "text": "Yes please, we'll need it for our vendor review."},
+      {"role": "agent", "text": "I'll send you the NDA and report link by email shortly."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "How do I connect Salesforce to sync our contacts?"},
+      {"role": "agent", "text": "Go to Settings > Integrations > Salesforce and click Connect. You'll need your Salesforce admin credentials."},
+      {"role": "user", "text": "Does it sync both ways?"},
+      {"role": "agent", "text": "Yes, it supports bidirectional sync. You can configure which fields are synced from the integration settings."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "I want to receive real-time events via webhook. How do I set that up?"},
+      {"role": "agent", "text": "Go to Settings > Integrations > Webhooks and add your endpoint URL. You can subscribe to specific event types."},
+      {"role": "user", "text": "What does the payload look like?"},
+      {"role": "agent", "text": "Each payload is a JSON object with an event type, timestamp, and data object. I can send you our webhook documentation."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Does your platform integrate with Zapier?"},
+      {"role": "agent", "text": "Yes, we have a native Zapier integration with over 20 triggers and actions."},
+      {"role": "user", "text": "Can I trigger a Zap when a new user signs up?"},
+      {"role": "agent", "text": "Yes, 'New User Created' is one of our available Zapier triggers."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Can I embed a dashboard in our internal website?"},
+      {"role": "agent", "text": "Yes. Go to the dashboard, click Share, and select Embed. You'll get an iframe code to paste into your site."},
+      {"role": "user", "text": "Can I restrict it so only logged-in users can see it?"},
+      {"role": "agent", "text": "Yes, you can enable authentication on the embed so it only renders for authenticated sessions."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "What are the API rate limits?"},
+      {"role": "agent", "text": "The default limit is 1000 requests per minute per API key."},
+      {"role": "user", "text": "What happens if we hit the limit?"},
+      {"role": "agent", "text": "You'll receive a 429 response. We recommend implementing exponential backoff and retry logic in your integration."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "text": "Our Jira integration stopped pulling in new tickets after we updated Jira."},
+      {"role": "agent", "text": "This usually happens when the Jira OAuth token expires after an update. Can you go to Settings > Integrations > Jira?"},
+      {"role": "user", "text": "I see it's showing a red disconnected status."},
+      {"role": "agent", "text": "Click Reconnect and re-authorize with your Jira admin account. That should restore the sync."}
+    ]
+  }
+]
