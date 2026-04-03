@@ -8,6 +8,7 @@ dependencies = [
     "anthropic>=0.88.0",
     "bertopic>=0.17.4",
     "hdbscan>=0.8.42",
+    "python-dotenv>=1.2.2",
     "sentence-transformers>=5.3.0",
     "umap-learn>=0.5.11",
 ]

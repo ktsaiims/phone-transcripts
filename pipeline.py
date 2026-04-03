@@ -4,8 +4,12 @@ import re
 import time
 import random
 import argparse
+from dotenv import load_dotenv
+from os import getenv
 from pathlib import Path
 
+
+load_dotenv()
 
 BATCH_SIZE = 10
 BATCH_SLEEP = 5
