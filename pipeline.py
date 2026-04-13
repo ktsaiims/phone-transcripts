@@ -19,11 +19,15 @@ SYSTEM_PROMPT = "Summarize the core issue or request in this conversation in one
 
 
 def load_conversations(path):
-    with open(path) as f:
+    with open(path, 'rb') as f:
+        raw = f.read(2)
+    encoding = 'utf-16' if raw in (b'\xff\xfe', b'\xfe\xff') else 'utf-8'
+    with open(path, 'r', encoding=encoding) as f:
         return json.load(f)
 
 
-def flatten_conversation(conv):
+def flatten_test_conversation(conv):
+    '''Use for test data in ./tests/fixtures/conversations.json'''
     lines = []
     for msg in conv.get("messages", []):
         role = msg.get("role", "unknown").capitalize()
@@ -35,6 +39,33 @@ def flatten_conversation(conv):
         return None
     return transcript
 
+
+def flatten_live_conversation(conv: list[dict]) -> str | None:
+    '''Use for live IMS data.
+
+        Args:
+            conv: List of JSON items
+
+        Returns:
+            Multi-line string
+    '''
+    lines = []
+
+    for msg in conv:
+        role = msg.get('name', 'unknown')
+        if 'receptionist' in role.lower():
+            role = 'agent'
+        else:
+            role = 'user'
+
+        text = msg.get('content', '').strip()
+        if text:
+            lines.append(f'{role}: {text}')
+
+    transcript = '\n'.join(lines) # join list items into multi-lines
+    if len(transcript) < MIN_CONV_CHARS:
+        return None
+    return transcript
 
 
 def clean_summary(text):
@@ -218,7 +249,8 @@ def main():
     transcripts = []
     skipped = 0
     for conv in conversations:
-        text = flatten_conversation(conv)
+        # text = flatten_test_conversation(conv)
+        text = flatten_live_conversation(conv)
         if text is None:
             skipped += 1
         else:

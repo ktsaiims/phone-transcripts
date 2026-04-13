@@ -11,3 +11,8 @@ wheels/
 
 bertopic_model
 *.env
+
+# Custom
+scratch*
+*.zip
+raw_data*
