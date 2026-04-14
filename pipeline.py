@@ -228,6 +228,11 @@ def main():
     parser.add_argument("--model-path", default="bertopic_model", help="Path to save BERTopic model")
     parser.add_argument("--min-cluster-size", type=int, default=None,
         help="HDBSCAN min_cluster_size (default: BERTopic's default of 10; use 2 for small datasets like fixtures)")
+    parser.add_argument(
+        "--from-summaries",
+        action="store_true",
+        help="Skip flattening and distillation; load summaries directly from --summaries-path",
+    )
     args = parser.parse_args()
 
     BATCH_SIZE = args.batch_size
@@ -235,30 +240,38 @@ def main():
 
     summaries_path = Path(args.summaries_path)
 
-    input_path = args.input
-    if not input_path:
-        parser.error("--input is required. Example: uv run python pipeline.py --input transcripts.json")
-    if not Path(input_path).exists():
-        parser.error(f"Input file not found: {input_path}")
+    if args.from_summaries:
+        if not summaries_path.exists():
+            parser.error(f"--from-summaries requires summaries file to exist: {summaries_path}")
+        cache = load_cached_summaries(summaries_path)
+        summaries = [clean_summary(cache[k]) for k in sorted(cache, key=int)]
+        print(f"Loaded {len(summaries)} summaries from {summaries_path}")
+        run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size)
+    else:
+        input_path = args.input
+        if not input_path:
+            parser.error("--input is required. Example: uv run python pipeline.py --input transcripts.json")
+        if not Path(input_path).exists():
+            parser.error(f"Input file not found: {input_path}")
 
-    print(f"Loading conversations from {input_path}...")
-    conversations = load_conversations(input_path)
-    print(f"Loaded {len(conversations)} conversations")
+        print(f"Loading conversations from {input_path}...")
+        conversations = load_conversations(input_path)
+        print(f"Loaded {len(conversations)} conversations")
 
-    print("Flattening conversations...")
-    transcripts = []
-    skipped = 0
-    for conv in conversations:
-        # text = flatten_test_conversation(conv)
-        text = flatten_live_conversation(conv)
-        if text is None:
-            skipped += 1
-        else:
-            transcripts.append(text)
-    print(f"Kept {len(transcripts)} conversations ({skipped} skipped as too short)")
+        print("Flattening conversations...")
+        transcripts = []
+        skipped = 0
+        for conv in conversations:
+            # text = flatten_test_conversation(conv)
+            text = flatten_live_conversation(conv)
+            if text is None:
+                skipped += 1
+            else:
+                transcripts.append(text)
+        print(f"Kept {len(transcripts)} conversations ({skipped} skipped as too short)")
 
-    summaries = run_distillation(transcripts, summaries_path)
-    run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size)
+        summaries = run_distillation(transcripts, summaries_path)
+        run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size)
 
 
 if __name__ == "__main__":
