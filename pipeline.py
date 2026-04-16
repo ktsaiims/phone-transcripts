@@ -49,6 +49,10 @@ def flatten_live_conversation(conv: list[dict]) -> str | None:
         Returns:
             Multi-line string
     '''
+    if not isinstance(conv, list):
+        print('conv is not a list datatype, skipping...')
+        return None
+
     lines = []
 
     for msg in conv:
@@ -268,7 +272,7 @@ def main():
                 skipped += 1
             else:
                 transcripts.append(text)
-        print(f"Kept {len(transcripts)} conversations ({skipped} skipped as too short)")
+        print(f"Kept {len(transcripts)} conversations ({skipped} skipped)")
 
         summaries = run_distillation(transcripts, summaries_path)
         run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size)
