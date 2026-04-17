@@ -172,32 +172,54 @@ def summarize_topic(client, keywords, representative_docs):
             time.sleep((2 ** attempt) + random.uniform(0, 1))
 
 
-def print_topic_summaries(top5, model):
+def build_topic_rows(top_n, model):
+    """Return list of dicts with rank, topic_id, count, label, keywords for each topic."""
     from anthropic import Anthropic
     client = Anthropic()
-    print("Top 5 Topics:\n")
-    for rank, row in enumerate(top5.itertuples(), 1):
+    rows = []
+    for rank, row in enumerate(top_n.itertuples(), 1):
         topic_words = model.get_topic(row.Topic)
         keywords = [word for word, _ in topic_words[:5]]
         rep_docs = model.get_representative_docs(row.Topic) or []
         label = summarize_topic(client, keywords, rep_docs)
-        print(f"  {rank}. [{row.Count} conversations] {label}")
+        rows.append({
+            "rank": rank,
+            "topic_id": row.Topic,
+            "count": row.Count,
+            "label": label,
+            "keywords": keywords,
+        })
+    return rows
+
+
+def print_topic_summaries(rows, n):
+    print(f"Top {n} Topics:\n")
+    for r in rows:
+        print(f"  {r['rank']}. [{r['count']} conversations] {r['label']}")
     print()
 
 
-def print_topic_table(top5, model):
+def print_topic_table(rows, top_n_df, model):
     print("\n" + "=" * 72)
     print(f"{'Rank':<6} {'Topic ID':<10} {'Count':<8} {'Label':<28} Keywords")
     print("-" * 72)
-    for rank, row in enumerate(top5.itertuples(), 1):
-        topic_words = model.get_topic(row.Topic)
-        keywords = ", ".join(word for word, _ in topic_words[:5])
-        label = str(getattr(row, "Name", row.Topic))
-        print(f"{rank:<6} {row.Topic:<10} {row.Count:<8} {label:<28} {keywords}")
+    for r in rows:
+        keywords_str = ", ".join(r["keywords"])
+        print(f"{r['rank']:<6} {r['topic_id']:<10} {r['count']:<8} {r['label']:<28} {keywords_str}")
     print("=" * 72 + "\n")
 
 
-def run_bertopic(summaries, model_path, min_cluster_size=None):
+def write_output(rows, output_path, n):
+    """Write top-N topic results to a JSON file."""
+    result = {
+        "top_n": n,
+        "topics": rows,
+    }
+    Path(output_path).write_text(json.dumps(result, indent=2))
+    print(f"Results written to {output_path}")
+
+
+def run_bertopic(summaries, model_path, min_cluster_size=None, top_n=5, output_path=None):
     from bertopic import BERTopic
     from hdbscan import HDBSCAN
     from sklearn.feature_extraction.text import CountVectorizer
@@ -215,16 +237,20 @@ def run_bertopic(summaries, model_path, min_cluster_size=None):
     info = model.get_topic_info()
     info = info[info["Topic"] != -1]
     info = info.sort_values("Count", ascending=False)
-    top5 = info.head(5).reset_index(drop=True)
+    top_n_df = info.head(top_n).reset_index(drop=True)
 
-    print_topic_table(top5, model)
-    print_topic_summaries(top5, model)
+    rows = build_topic_rows(top_n_df, model)
+    print_topic_table(rows, top_n_df, model)
+    print_topic_summaries(rows, top_n)
+
+    if output_path:
+        write_output(rows, output_path, top_n)
 
 
 def main():
     global BATCH_SIZE, BATCH_SLEEP
 
-    parser = argparse.ArgumentParser(description="Extract top 5 topics from conversation transcripts")
+    parser = argparse.ArgumentParser(description="Extract top N topics from conversation transcripts")
     parser.add_argument("--input", help="Path to JSON file with conversation transcripts")
     parser.add_argument("--batch-size", type=int, default=BATCH_SIZE, help="Conversations per API batch")
     parser.add_argument("--batch-sleep", type=float, default=BATCH_SLEEP, help="Seconds to sleep between batches")
@@ -237,6 +263,8 @@ def main():
         action="store_true",
         help="Skip flattening and distillation; load summaries directly from --summaries-path",
     )
+    parser.add_argument("--top-n", type=int, default=5, help="Number of top topics to display (default: 5)")
+    parser.add_argument("--output", default=None, help="Path to write results as JSON (optional)")
     args = parser.parse_args()
 
     BATCH_SIZE = args.batch_size
@@ -250,7 +278,7 @@ def main():
         cache = load_cached_summaries(summaries_path)
         summaries = [clean_summary(cache[k]) for k in sorted(cache, key=int)]
         print(f"Loaded {len(summaries)} summaries from {summaries_path}")
-        run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size)
+        run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size, top_n=args.top_n, output_path=args.output)
     else:
         input_path = args.input
         if not input_path:
@@ -275,7 +303,7 @@ def main():
         print(f"Kept {len(transcripts)} conversations ({skipped} skipped)")
 
         summaries = run_distillation(transcripts, summaries_path)
-        run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size)
+        run_bertopic(summaries, args.model_path, min_cluster_size=args.min_cluster_size, top_n=args.top_n, output_path=args.output)
 
 
 if __name__ == "__main__":
